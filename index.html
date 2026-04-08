@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Подкаст «Вырос и стал» | Профориентационный тест</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f8fafc;
+            color: #0f172a;
+            line-height: 1.5;
+        }
+
+        /* Шапка подкаста */
+        .podcast-header {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: white;
+            padding: 3rem 1.5rem;
+            text-align: center;
+        }
+
+        .podcast-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+        }
+
+        .podcast-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Контейнер */
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        /* Карточки */
+        .card {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -2px rgba(0, 0, 0, 0.05), 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Блок плеера (пример) */
+        .player-wrapper {
+            background: #f1f5f9;
+            border-radius: 1rem;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .fake-player {
+            background: #e2e8f0;
+            border-radius: 2rem;
+            padding: 0.75rem 1rem;
+            color: #334155;
+            font-weight: 500;
+        }
+
+        /* Тест */
+        .question {
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 1.5rem;
+        }
+
+        .question-text {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 1rem;
+            transition: background 0.2s;
+        }
+
+        .option:hover {
+            background: #f1f5f9;
+        }
+
+        input[type="radio"] {
+            width: 1.2rem;
+            height: 1.2rem;
+            accent-color: #3b82f6;
+            cursor: pointer;
+        }
+
+        label {
+            font-size: 1rem;
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .btn {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 0.9rem 1.8rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 3rem;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.2s, transform 0.05s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Результат */
+        .result-card {
+            background: #ecfdf5;
+            border-left: 6px solid #10b981;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .result-category {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #065f46;
+            margin-bottom: 0.5rem;
+        }
+
+        .result-desc {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: #064e3b;
+        }
+
+        .professions {
+            background: #d1fae5;
+            padding: 0.75rem;
+            border-radius: 0.75rem;
+            font-size: 0.95rem;
+        }
+
+        .episode-link {
+            margin-top: 1rem;
+            font-style: italic;
+            color: #047857;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            color: #64748b;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 640px) {
+            .podcast-title {
+                font-size: 1.8rem;
+            }
+            .card {
+                padding: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="podcast-header">
+    <div class="podcast-title">🎙️ Вырос и стал</div>
+    <div class="podcast-subtitle">Подкаст о том, как мы выбираем свой путь и не боимся меняться</div>
+</header>
+
+<div class="container">
+    <!-- Блок с подкастом (встройте свой плеер Mave) -->
+    <div class="card">
+        <h3 style="margin-bottom: 0.75rem;">🎧 Слушать последний выпуск</h3>
+        <div class="player-wrapper">
+            <div class="fake-player">
+                🔈 Здесь будет встроенный плеер Mave<br>
+                <small>Замените этот блок на код встраивания с mave.digital</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- Блок со свежими выпусками (пример) -->
+    <div class="card">
+        <h3>📻 Свежие выпуски</h3>
+        <ul style="margin-top: 0.75rem; list-style: none;">
+            <li>• #24 «Как не выгореть на первой работе» — гость: HR-директор</li>
+            <li>• #23 «Из офиса в фриланс: страхи и деньги»</li>
+            <li>• #22 «Кем стать, если нравится всё сразу?»</li>
+        </ul>
+        <p style="margin-top: 1rem; font-size: 0.9rem;">👉 Полный архив — на платформе Mave</p>
+    </div>
+
+    <!-- ПРОФОРИЕНТАЦИОННЫЙ ТЕСТ -->
+    <div class="card">
+        <h2 style="margin-bottom: 0.5rem;">🧭 Кем вам стать?</h2>
+        <p style="margin-bottom: 1.5rem; color: #334155;">Пройдите короткий тест (6 вопросов) — узнайте свою склонность к сферам деятельности.</p>
+
+        <form id="careerTestForm">
+            <!-- Вопрос 1 -->
+            <div class="question">
+                <div class="question-text">1. В свободное время мне больше нравится:</div>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q1" value="Ч-Ч"> общаться с друзьями, помогать близким</label>
+                    <label class="option"><input type="radio" name="q1" value="Ч-Т"> что-то мастерить, ремонтировать, разбирать технику</label>
+                    <label class="option"><input type="radio" name="q1" value="Ч-З"> решать головоломки, работать с таблицами/цифрами</label>
+                    <label class="option"><input type="radio" name="q1" value="Ч-ХО"> рисовать, писать стихи, играть на музыке</label>
+                    <label class="option"><input type="radio" name="q1" value="Ч-П"> ухаживать за растениями или животными</label>
+                </div>
+            </div>
+
+            <!-- Вопрос 2 -->
+            <div class="question">
+                <div class="question-text">2. На какой проект ты бы с большей охотой согласился?</div>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q2" value="Ч-Ч"> организовать мероприятие для людей</label>
+                    <label class="option"><input type="radio" name="q2" value="Ч-Т"> собрать и настроить компьютер или робота</label>
+                    <label class="option"><input type="radio" name="q2" value="Ч-З"> проверить отчёт на ошибки, систематизировать данные</label>
+                    <label class="option"><input type="radio" name="q2" value="Ч-ХО"> оформить сцену/витрину, придумать дизайн</label>
+                    <label class="option"><input type="radio" name="q2" value="Ч-П"> вырастить рассаду или понаблюдать за птицами</label>
+                </div>
+            </div>
+
+            <!-- Вопрос 3 -->
+            <div class="question">
+                <div class="question-text">3. Что тебя радует больше всего?</div>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q3" value="Ч-Ч"> когда удалось примирить поссорившихся или помочь советом</label>
+                    <label class="option"><input type="radio" name="q3" value="Ч-Т"> когда сложный механизм заработал как надо</label>
+                    <label class="option"><input type="radio" name="q3" value="Ч-З"> когда нашёл логическую закономерность или ошибку в расчётах</label>
+                    <label class="option"><input type="radio" name="q3" value="Ч-ХО"> когда получилось красиво и необычно что-то изобразить</label>
+                    <label class="option"><input type="radio" name="q3" value="Ч-П"> когда в комнате появилось красивое цветущее растение</label>
+                </div>
+            </div>
+
+            <!-- Вопрос 4 -->
+            <div class="question">
+                <div class="question-text">4. Какая похвала для тебя ценнее?</div>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q4" value="Ч-Ч"> «ты отличный друг и внимательный человек»</label>
+                    <label class="option"><input type="radio" name="q4" value="Ч-Т"> «у тебя золотые руки, всё работает без сбоев»</label>
+                    <label class="option"><input type="radio" name="q4" value="Ч-З"> «ты очень внимателен к деталям и точен в расчётах»</label>
+                    <label class="option"><input type="radio" name="q4" value="Ч-ХО"> «ты невероятно творческий, у тебя особый взгляд»</label>
+                    <label class="option"><input type="radio" name="q4" value="Ч-П"> «с тобой природа расцветает, ты настоящий хранитель»</label>
+                </div>
+            </div>
+
+            <!-- Вопрос 5 -->
+            <div class="question">
+                <div class="question-text">5. Что тебе бывает сложно, но при этом интересно?</div>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q5" value="Ч-Ч"> понять другого человека, найти к нему подход</label>
+                    <label class="option"><input type="radio" name="q5" value="Ч-Т"> освоить новую технику или программу</label>
+                    <label class="option"><input type="radio" name="q5" value="Ч-З"> разобраться в запутанной документации или коде</label>
+                    <label class="option"><input type="radio" name="q5" value="Ч-ХО"> придумать оригинальную идею с нуля</label>
+                    <label class="option"><input type="radio" name="q5" value="Ч-П"> запомнить названия растений или повадки животных</label>
+                </div>
+            </div>
+
+            <!-- Вопрос 6 -->
+            <div class="question">
+                <div class="question-text">6. Какую работу ты бы выбрал, если бы не было других ограничений?</div>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q6" value="Ч-Ч"> врач, учитель, психолог, коуч</label>
+                    <label class="option"><input type="radio" name="q6" value="Ч-Т"> инженер, водитель, IT-специалист по железу</label>
+                    <label class="option"><input type="radio" name="q6" value="Ч-З"> бухгалтер, аналитик, программист</label>
+                    <label class="option"><input type="radio" name="q6" value="Ч-ХО"> дизайнер, художник, писатель, музыкант</label>
+                    <label class="option"><input type="radio" name="q6" value="Ч-П"> эколог, ветеринар, садовник, зоолог</label>
+                </div>
+            </div>
+
+            <button type="button" class="btn" id="submitTest">Узнать результат</button>
+        </form>
+
+        <div id="resultBlock" class="result-card hide"></div>
+    </div>
+</div>
+
+<footer>
+    <p>🎙️ Подкаст «Вырос и стал» — истории о самоопределении и взрослении.</p>
+    <p style="margin-top: 0.5rem;">✉️ Сотрудничество: hello@vyros-i-stal.ru</p>
+</footer>
+
+<script>
+    // Данные по категориям
+    const categoriesData = {
+        "Ч-Ч": {
+            name: "Человек – Человек",
+            description: "Ваша стихия — общение и помощь другим. Вы умеете слушать, находить подход и заботиться. Вам подойдут профессии, где нужно работать с людьми.",
+            professions: "Психолог, учитель, HR-менеджер, врач, коуч, социальный работник.",
+            episodeTip: "🎧 Послушайте выпуск про работу с людьми — например, «Как не выгореть в помогающих профессиях»."
+        },
+        "Ч-Т": {
+            name: "Человек – Техника",
+            description: "Вас привлекают механизмы, приборы, техника. Вы любите понимать, как что устроено, и доводить до идеала.",
+            professions: "Инженер-механик, системный администратор, пилот, робототехник, электромонтёр.",
+            episodeTip: "🎧 Рекомендуем выпуск «Технари vs гуманитарии: мифы и реальность»."
+        },
+        "Ч-З": {
+            name: "Человек – Знак",
+            description: "Вы внимательны к символам, цифрам, текстам. Обладаете структурным мышлением и усидчивостью.",
+            professions: "Аналитик данных, программист, корректор, бухгалтер, логист, переводчик.",
+            episodeTip: "🎧 Вдохновитесь выпуском «Аналитик: как работать с данными и не сойти с ума»."
+        },
+        "Ч-ХО": {
+            name: "Человек – Художественный образ",
+            description: "Вы чувствуете красоту, обладаете воображением и любите создавать новое.",
+            professions: "Графический дизайнер, иллюстратор, режиссёр монтажа, писатель, фотограф, актёр.",
+            episodeTip: "🎧 Послушайте «Творческий путь: как зарабатывать искусством»."
+        },
+        "Ч-П": {
+            name: "Человек – Природа",
+            description: "Вы неравнодушны к живому миру, любите наблюдать и заботиться о растениях или животных.",
+            professions: "Эколог, ветеринар, ландшафтный дизайнер, биолог, фермер, зоолог.",
+            episodeTip: "🎧 Отличный выпуск: «Работа с природой: от городского фермерства до экологического аудита»."
+        }
+    };
+
+    document.getElementById("submitTest").addEventListener("click", function() {
+        // Собираем ответы
+        const answers = {
+            q1: document.querySelector('input[name="q1"]:checked'),
+            q2: document.querySelector('input[name="q2"]:checked'),
+            q3: document.querySelector('input[name="q3"]:checked'),
+            q4: document.querySelector('input[name="q4"]:checked'),
+            q5: document.querySelector('input[name="q5"]:checked'),
+            q6: document.querySelector('input[name="q6"]:checked')
+        };
+
+        // Проверяем, что все вопросы отмечены
+        for (let key in answers) {
+            if (!answers[key]) {
+                alert("Пожалуйста, ответьте на все 6 вопросов, чтобы получить точный результат.");
+                return;
+            }
+        }
+
+        // Считаем голоса
+        const scores = {
+            "Ч-Ч": 0,
+            "Ч-Т": 0,
+            "Ч-З": 0,
+            "Ч-ХО": 0,
+            "Ч-П": 0
+        };
+
+        for (let key in answers) {
+            const value = answers[key].value;
+            if (scores.hasOwnProperty(value)) {
+                scores[value]++;
+            }
+        }
+
+        // Находим категорию с максимумом
+        let maxCategory = null;
+        let maxCount = -1;
+        for (let cat in scores) {
+            if (scores[cat] > maxCount) {
+                maxCount = scores[cat];
+                maxCategory = cat;
+            }
+        }
+
+        // Показываем результат
+        const data = categoriesData[maxCategory];
+        const resultDiv = document.getElementById("resultBlock");
+        resultDiv.classList.remove("hide");
+        resultDiv.innerHTML = `
+            <div class="result-category">🧩 ${data.name}</div>
+            <div class="result-desc">${data.description}</div>
+            <div class="professions"><strong>💼 Примеры профессий:</strong> ${data.professions}</div>
+            <div class="episode-link">✨ ${data.episodeTip}</div>
+            <p style="margin-top: 1rem; font-size: 0.85rem;">Попробуйте пройти тест ещё раз — возможно, ваши ответы изменятся со временем.</p>
+        `;
+
+        // Прокрутка к результату
+        resultDiv.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    });
+</script>
+</body>
+</html>
