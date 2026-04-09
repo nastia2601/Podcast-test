@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Подкаст «Вырос и стал» | Профориентационный тест</title>
+    <title>Подкаст «Выросли, стали» | Профориентационный тест</title>
+    <!-- Подключаем стильные шрифты -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&family=Playfair+Display:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,103 +14,159 @@
         }
 
         body {
-            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-            background: #f8fafc;
-            color: #0f172a;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: #faf9ff;
+            color: #1e1b2e;
             line-height: 1.5;
         }
 
-        /* Шапка подкаста */
+        /* Шапка подкаста — фирменные цвета (фиолетовый + оранжевый) */
         .podcast-header {
-            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            background: linear-gradient(135deg, #6d28d9 0%, #f97316 100%);
             color: white;
-            padding: 3rem 1.5rem;
+            padding: 2rem 1.5rem;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: white;
+            padding: 4px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            transition: transform 0.2s ease;
+        }
+
+        .logo img:hover {
+            transform: scale(1.02);
+        }
+
+        .header-text {
             text-align: center;
         }
 
         .podcast-title {
-            font-size: 2.5rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
             font-weight: 800;
-            letter-spacing: -0.02em;
+            letter-spacing: -0.01em;
             margin-bottom: 0.5rem;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
         .podcast-subtitle {
             font-size: 1.2rem;
-            opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto;
+            font-weight: 400;
+            opacity: 0.95;
+            max-width: 550px;
         }
 
-        /* Контейнер */
         .container {
-            max-width: 800px;
-            margin: 2rem auto;
-            padding: 0 1rem;
+            max-width: 850px;
+            margin: 2.5rem auto;
+            padding: 0 1.5rem;
         }
 
-        /* Карточки */
         .card {
             background: white;
-            border-radius: 1.5rem;
-            padding: 1.5rem;
+            border-radius: 1.75rem;
+            padding: 1.8rem;
             margin-bottom: 2rem;
-            box-shadow: 0 4px 6px -2px rgba(0, 0, 0, 0.05), 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+            border: 1px solid #ede9fe;
+            transition: box-shadow 0.2s;
         }
 
-        /* Блок плеера (пример) */
+        .card:hover {
+            box-shadow: 0 20px 30px -12px rgba(109, 40, 217, 0.1);
+        }
+
+        .card h2, .card h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+        }
+
+        .card h2 {
+            font-size: 1.9rem;
+            color: #4c1d95;
+            margin-bottom: 0.5rem;
+        }
+
         .player-wrapper {
-            background: #f1f5f9;
-            border-radius: 1rem;
+            background: #f3f4f6;
+            border-radius: 1.25rem;
             padding: 1rem;
             text-align: center;
         }
 
-        .fake-player {
-            background: #e2e8f0;
-            border-radius: 2rem;
-            padding: 0.75rem 1rem;
-            color: #334155;
-            font-weight: 500;
+        .player-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 0.75rem;
         }
 
-        /* Тест */
+        .player-container iframe {
+            width: 100%;
+            border: none;
+            display: block;
+        }
+
         .question {
             margin-bottom: 2rem;
-            border-bottom: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e9e8f0;
             padding-bottom: 1.5rem;
         }
 
         .question-text {
+            font-family: 'Playfair Display', serif;
             font-weight: 700;
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             margin-bottom: 1rem;
+            color: #4c1d95;
         }
 
         .options {
             display: flex;
             flex-direction: column;
-            gap: 0.75rem;
+            gap: 0.85rem;
         }
 
         .option {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 0.85rem;
             cursor: pointer;
-            padding: 0.5rem;
+            padding: 0.5rem 0.75rem;
             border-radius: 1rem;
-            transition: background 0.2s;
+            transition: background 0.2s, transform 0.1s;
+            font-weight: 500;
         }
 
         .option:hover {
-            background: #f1f5f9;
+            background: #f5f3ff;
         }
 
         input[type="radio"] {
             width: 1.2rem;
             height: 1.2rem;
-            accent-color: #3b82f6;
+            accent-color: #f97316;
             cursor: pointer;
         }
 
@@ -116,62 +174,115 @@
             font-size: 1rem;
             cursor: pointer;
             flex: 1;
+            font-weight: 450;
         }
 
         .btn {
-            background: #3b82f6;
+            background: linear-gradient(95deg, #6d28d9 0%, #f97316 100%);
             color: white;
             border: none;
-            padding: 0.9rem 1.8rem;
+            padding: 1rem 1.8rem;
             font-size: 1.1rem;
-            font-weight: 600;
+            font-weight: 700;
+            font-family: 'Inter', sans-serif;
             border-radius: 3rem;
             cursor: pointer;
             width: 100%;
-            transition: background 0.2s, transform 0.05s;
+            transition: opacity 0.2s, transform 0.05s;
+            box-shadow: 0 4px 8px rgba(109, 40, 217, 0.2);
         }
 
         .btn:hover {
-            background: #2563eb;
+            opacity: 0.92;
         }
 
         .btn:active {
             transform: scale(0.98);
         }
 
-        /* Результат */
         .result-card {
-            background: #ecfdf5;
-            border-left: 6px solid #10b981;
+            background: #fff7ed;
+            border-left: 6px solid #f97316;
             padding: 1.5rem;
-            border-radius: 1rem;
-            margin-top: 1.5rem;
+            border-radius: 1.25rem;
+            margin-top: 1.8rem;
         }
 
         .result-category {
-            font-size: 1.6rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.7rem;
             font-weight: 800;
-            color: #065f46;
+            color: #9b2c2c;
             margin-bottom: 0.5rem;
         }
 
         .result-desc {
             font-size: 1rem;
             margin-bottom: 1rem;
-            color: #064e3b;
+            color: #431407;
+            line-height: 1.5;
         }
 
         .professions {
-            background: #d1fae5;
-            padding: 0.75rem;
-            border-radius: 0.75rem;
+            background: #ffedd5;
+            padding: 0.9rem;
+            border-radius: 1rem;
             font-size: 0.95rem;
+            font-weight: 500;
         }
 
         .episode-link {
             margin-top: 1rem;
             font-style: italic;
-            color: #047857;
+            color: #c2410c;
+            font-weight: 500;
+        }
+
+        /* Кнопки поделиться */
+        .share-buttons {
+            margin-top: 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            justify-content: center;
+        }
+
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            border-radius: 2rem;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: transform 0.1s, opacity 0.2s;
+            border: none;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .share-btn:active {
+            transform: scale(0.96);
+        }
+
+        .share-telegram {
+            background: #28a8e9;
+            color: white;
+        }
+
+        .share-vk {
+            background: #0077ff;
+            color: white;
+        }
+
+        .share-wa {
+            background: #25d366;
+            color: white;
+        }
+
+        .share-btn:hover {
+            opacity: 0.85;
         }
 
         .hide {
@@ -181,17 +292,32 @@
         footer {
             text-align: center;
             padding: 2rem 1rem;
-            color: #64748b;
-            border-top: 1px solid #e2e8f0;
+            color: #6c6684;
+            border-top: 1px solid #e9e8f0;
             margin-top: 2rem;
+            font-size: 0.9rem;
         }
 
         @media (max-width: 640px) {
             .podcast-title {
-                font-size: 1.8rem;
+                font-size: 2rem;
             }
             .card {
-                padding: 1.2rem;
+                padding: 1.3rem;
+            }
+            .header-container {
+                gap: 1rem;
+            }
+            .logo img, .logo-placeholder {
+                width: 70px;
+                height: 70px;
+            }
+            .card h2 {
+                font-size: 1.6rem;
+            }
+            .share-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -199,23 +325,32 @@
 <body>
 
 <header class="podcast-header">
-    <div class="podcast-title">🎙️ Вырос и стал</div>
-    <div class="podcast-subtitle">Подкаст о том, как мы выбираем свой путь и не боимся меняться</div>
+    <div class="header-container">
+        <div class="logo">
+            <!-- ЗАМЕНИТЕ ССЫЛКУ НА ВАШ ЛОГОТИП -->
+            <img src="https://placehold.co/400x400/6d28d9/white?text=ВС" alt="Логотип подкаста Выросли, стали">
+        </div>
+        <div class="header-text">
+            <div class="podcast-title">Выросли, стали</div>
+            <div class="podcast-subtitle">Подкаст о том, как мы выбираем свой путь и не боимся меняться</div>
+        </div>
+    </div>
 </header>
 
 <div class="container">
-    <!-- Блок с подкастом (встройте свой плеер Mave) -->
+    <!-- Блок с подкастом — вставьте ваш код с Mave Digital -->
     <div class="card">
         <h3 style="margin-bottom: 0.75rem;">🎧 Слушать последний выпуск</h3>
         <div class="player-wrapper">
-            <div class="fake-player">
-                🔈 Здесь будет встроенный плеер Mave<br>
-                <small>Замените этот блок на код встраивания с mave.digital</small>
+            <div class="player-container">
+                <!-- ЗАМЕНИТЕ src НА ВАШ РЕАЛЬНЫЙ КОД ПЛЕЕРА MAVE DIGITAL -->
+                <iframe src="https://player.mave.digital/episode/1" height="152" allow="encrypted-media" loading="lazy"></iframe>
             </div>
+            <small style="display: block; margin-top: 0.5rem; color: #6c6684;">Выпуск доступен на всех платформах</small>
         </div>
     </div>
 
-    <!-- Блок со свежими выпусками (пример) -->
+    <!-- Блок со свежими выпусками -->
     <div class="card">
         <h3>📻 Свежие выпуски</h3>
         <ul style="margin-top: 0.75rem; list-style: none;">
@@ -226,10 +361,10 @@
         <p style="margin-top: 1rem; font-size: 0.9rem;">👉 Полный архив — на платформе Mave</p>
     </div>
 
-    <!-- ПРОФОРИЕНТАЦИОННЫЙ ТЕСТ -->
+    <!-- ПРОФОРИЕНТАЦИОННЫЙ ТЕСТ (10 вопросов) -->
     <div class="card">
         <h2 style="margin-bottom: 0.5rem;">🧭 Кем вам стать?</h2>
-        <p style="margin-bottom: 1.5rem; color: #334155;">Пройдите короткий тест (6 вопросов) — узнайте свою склонность к сферам деятельности.</p>
+        <p style="margin-bottom: 1.5rem; color: #334155;">Пройдите короткий тест (10 вопросов) — узнайте свою склонность к сферам деятельности.</p>
 
         <form id="careerTestForm">
             <!-- Вопрос 1 -->
@@ -304,6 +439,54 @@
                 </div>
             </div>
 
+            <!-- Вопрос 7 -->
+            <div class="question">
+                <div class="question-text">7. В какой атмосфере тебе комфортнее работать?</div>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q7" value="Ч-Ч"> в шумном офисе, где много людей и общения</label>
+                    <label class="option"><input type="radio" name="q7" value="Ч-Т"> в мастерской или лаборатории с инструментами</label>
+                    <label class="option"><input type="radio" name="q7" value="Ч-З"> в тишине за компьютером с таблицами или кодом</label>
+                    <label class="option"><input type="radio" name="q7" value="Ч-ХО"> в творческой студии, где можно рисовать/лепить</label>
+                    <label class="option"><input type="radio" name="q7" value="Ч-П"> на свежем воздухе, в парке или оранжерее</label>
+                </div>
+            </div>
+
+            <!-- Вопрос 8 -->
+            <div class="question">
+                <div class="question-text">8. Что из этого тебе ближе по духу?</div>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q8" value="Ч-Ч"> забота о детях или пожилых</label>
+                    <label class="option"><input type="radio" name="q8" value="Ч-Т"> программирование или 3D-моделирование</label>
+                    <label class="option"><input type="radio" name="q8" value="Ч-З"> ведение бюджетов, составление отчётов</label>
+                    <label class="option"><input type="radio" name="q8" value="Ч-ХО"> съёмка видео, написание музыки</label>
+                    <label class="option"><input type="radio" name="q8" value="Ч-П"> уход за домашними питомцами</label>
+                </div>
+            </div>
+
+            <!-- Вопрос 9 -->
+            <div class="question">
+                <div class="question-text">9. В школе тебе больше нравились уроки:</div>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q9" value="Ч-Ч"> психологии, литературы, истории</label>
+                    <label class="option"><input type="radio" name="q9" value="Ч-Т"> физики, информатики, труда</label>
+                    <label class="option"><input type="radio" name="q9" value="Ч-З"> математики, экономики</label>
+                    <label class="option"><input type="radio" name="q9" value="Ч-ХО"> рисования, музыки, МХК</label>
+                    <label class="option"><input type="radio" name="q9" value="Ч-П"> биологии, географии</label>
+                </div>
+            </div>
+
+            <!-- Вопрос 10 -->
+            <div class="question">
+                <div class="question-text">10. Какой суперсилой ты хотел бы обладать?</div>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q10" value="Ч-Ч"> исцелять людей или читать мысли</label>
+                    <label class="option"><input type="radio" name="q10" value="Ч-Т"> управлять техникой силой мысли</label>
+                    <label class="option"><input type="radio" name="q10" value="Ч-З"> видеть будущее в числах и схемах</label>
+                    <label class="option"><input type="radio" name="q10" value="Ч-ХО"> создавать прекрасные иллюзии</label>
+                    <label class="option"><input type="radio" name="q10" value="Ч-П"> разговаривать с животными</label>
+                </div>
+            </div>
+
             <button type="button" class="btn" id="submitTest">Узнать результат</button>
         </form>
 
@@ -312,8 +495,8 @@
 </div>
 
 <footer>
-    <p>🎙️ Подкаст «Вырос и стал» — истории о самоопределении и взрослении.</p>
-    <p style="margin-top: 0.5rem;">✉️ Сотрудничество: hello@vyros-i-stal.ru</p>
+    <p>🎙️ Подкаст «Выросли, стали» — истории о самоопределении и взрослении.</p>
+    <p style="margin-top: 0.5rem;">✉️ Сотрудничество: hello@vyrosli-stali.ru</p>
 </footer>
 
 <script>
@@ -351,21 +534,31 @@
         }
     };
 
+    // Функция для генерации текста результата для поделиться
+    function getShareText(categoryKey) {
+        const data = categoriesData[categoryKey];
+        return `Я прошёл(ла) тест на сайте подкаста «Выросли, стали». Мой результат: ${data.name}! ${data.description.substr(0, 100)}... Узнайте и свой тип на vyrosli-stali.ru`;
+    }
+
     document.getElementById("submitTest").addEventListener("click", function() {
-        // Собираем ответы
+        // Собираем ответы (10 вопросов)
         const answers = {
             q1: document.querySelector('input[name="q1"]:checked'),
             q2: document.querySelector('input[name="q2"]:checked'),
             q3: document.querySelector('input[name="q3"]:checked'),
             q4: document.querySelector('input[name="q4"]:checked'),
             q5: document.querySelector('input[name="q5"]:checked'),
-            q6: document.querySelector('input[name="q6"]:checked')
+            q6: document.querySelector('input[name="q6"]:checked'),
+            q7: document.querySelector('input[name="q7"]:checked'),
+            q8: document.querySelector('input[name="q8"]:checked'),
+            q9: document.querySelector('input[name="q9"]:checked'),
+            q10: document.querySelector('input[name="q10"]:checked')
         };
 
         // Проверяем, что все вопросы отмечены
         for (let key in answers) {
             if (!answers[key]) {
-                alert("Пожалуйста, ответьте на все 6 вопросов, чтобы получить точный результат.");
+                alert("Пожалуйста, ответьте на все 10 вопросов, чтобы получить точный результат.");
                 return;
             }
         }
@@ -400,12 +593,23 @@
         const data = categoriesData[maxCategory];
         const resultDiv = document.getElementById("resultBlock");
         resultDiv.classList.remove("hide");
+        
+        // Генерируем кнопки поделиться с актуальным результатом
+        const shareText = getShareText(maxCategory);
+        const shareUrl = encodeURIComponent(window.location.href);
+        const shareTextEncoded = encodeURIComponent(shareText);
+        
         resultDiv.innerHTML = `
             <div class="result-category">🧩 ${data.name}</div>
             <div class="result-desc">${data.description}</div>
             <div class="professions"><strong>💼 Примеры профессий:</strong> ${data.professions}</div>
             <div class="episode-link">✨ ${data.episodeTip}</div>
-            <p style="margin-top: 1rem; font-size: 0.85rem;">Попробуйте пройти тест ещё раз — возможно, ваши ответы изменятся со временем.</p>
+            <div class="share-buttons">
+                <a href="https://t.me/share/url?url=${shareUrl}&text=${shareTextEncoded}" target="_blank" class="share-btn share-telegram">📨 Telegram</a>
+                <a href="https://vk.com/share.php?url=${shareUrl}&title=${shareTextEncoded}" target="_blank" class="share-btn share-vk">📱 VK</a>
+                <a href="https://wa.me/?text=${shareTextEncoded}%20${shareUrl}" target="_blank" class="share-btn share-wa">💬 WhatsApp</a>
+            </div>
+            <p style="margin-top: 1rem; font-size: 0.85rem; text-align: center;">Поделитесь результатом с друзьями — им тоже будет интересно!</p>
         `;
 
         // Прокрутка к результату
